@@ -1,18 +1,28 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { ProductsController } from './products.controller';
-
+import { ProductsService } from './products.service'
+import { Product as ProductEntity } from './products.entity'
 describe('Products Controller', () => {
-  let controller: ProductsController;
+  let productsController: ProductsController
+  let productsService: ProductsService
 
   beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
+    const module = await Test.createTestingModule({
       controllers: [ProductsController],
-    }).compile();
+      providers: [ProductsService]
+    }).compile()
 
-    controller = module.get<ProductsController>(ProductsController);
+    productsService = module.get<ProductsService>(ProductsService)
+    productsController = module.get<ProductsController>(ProductsController)
   });
 
-  it('should be defined', () => {
-    expect(controller).toBeDefined();
-  });
+
+  describe('findAll', () => {
+    it('it should return an array of products', async () => {
+      const result: ProductEntity[] = []
+      jest.spyOn(productsService, 'findAll').mockImplementation(() => Promise.resolve(result))
+
+      expect(await productsController.findAll()).toBe(result)
+    });
+  })
 });
