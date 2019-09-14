@@ -1,11 +1,12 @@
 import { Injectable, Inject } from '@nestjs/common'
 import { Repository } from 'typeorm'
 import { Product } from './interfaces/product.interface'
+import { productRepositoryToken } from './product.constants'
 
 @Injectable()
 export class ProductsService {
   constructor(
-    @Inject('PRODUCT_REPOSITORY')
+    @Inject(productRepositoryToken)
     private readonly productRepository: Repository<Product>,
   ) {}
 
