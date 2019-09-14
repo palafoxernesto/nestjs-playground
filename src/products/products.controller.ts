@@ -1,6 +1,6 @@
-import { Controller, Get, Post, Body, Param, Put, Delete } from '@nestjs/common';
-import { Product }  from './interfaces/product.interface'
-import { ProductsService } from './products.service';
+import { Controller, Get, Post, Body, Param, Put, Delete } from '@nestjs/common'
+import { Product } from './interfaces/product.interface'
+import { ProductsService } from './products.service'
 
 @Controller('products')
 export class ProductsController {
@@ -31,4 +31,3 @@ export class ProductsController {
   }
 
 }
-

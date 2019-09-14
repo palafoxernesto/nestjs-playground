@@ -5,8 +5,8 @@ import { ProductsService } from './products.service'
 import { INestApplication } from '@nestjs/common'
 
 describe('Products', () => {
-  let app: INestApplication;
-  let productsService = { findAll: () => ['test']}
+  let app: INestApplication
+  const productsService = { findAll: () => ['test']}
 
   beforeAll(async () => {
     const module = await Test.createTestingModule({
@@ -28,7 +28,7 @@ describe('Products', () => {
   })
 
   afterAll(async () => {
-    await app,close()
+    await app, close()
   })
 
 })

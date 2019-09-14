@@ -1,5 +1,5 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { ProductsController } from './products.controller';
+import { Test, TestingModule } from '@nestjs/testing'
+import { ProductsController } from './products.controller'
 import { ProductsService } from './products.service'
 import { Product as ProductEntity } from './products.entity'
 describe('Products Controller', () => {
@@ -14,8 +14,7 @@ describe('Products Controller', () => {
 
     productsService = module.get<ProductsService>(ProductsService)
     productsController = module.get<ProductsController>(ProductsController)
-  });
-
+  })
 
   describe('findAll', () => {
     it('it should return an array of products', async () => {
@@ -23,6 +22,6 @@ describe('Products Controller', () => {
       jest.spyOn(productsService, 'findAll').mockImplementation(() => Promise.resolve(result))
 
       expect(await productsController.findAll()).toBe(result)
-    });
+    })
   })
-});
+})
