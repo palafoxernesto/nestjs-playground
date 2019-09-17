@@ -11,7 +11,7 @@ export class AuthService {
     private readonly jwtService: JwtService
     ) {}
 
-  async SignUp(email, password, name): Promise<any> {
+  async SignUp({email, password, username}): Promise<any> {
     const salt = randomBytes(32)
     const passwordHashed = await argon2.hash(password, { salt })
 
@@ -19,13 +19,13 @@ export class AuthService {
       password: passwordHashed,
       email,
       salt: salt.toString('hex'),
-      name
+      username
     })
 
     return {
       user: {
         email: userRecord.email,
-        name: userRecord.name,
+        username: userRecord.username,
       }
     }
   }
@@ -41,7 +41,7 @@ export class AuthService {
       return {
       user: {
         email: user.email,
-        name: user.name
+        username: user.username
       },
       token: this.jwtService.sign({username: user.email, sub: user.password})
     }

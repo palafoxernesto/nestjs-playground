@@ -4,7 +4,8 @@ import { User } from './interfaces/users.interface'
 
 @Injectable()
 export class UsersService {
-  constructor( @Inject('USERS_REPOSITORY') private readonly userRepository: Repository<User>) { }
+  constructor(
+    @Inject('USERS_REPOSITORY') private readonly userRepository: Repository<User>) {}
 
   async findOne(email: string): Promise<User> {
     try {
