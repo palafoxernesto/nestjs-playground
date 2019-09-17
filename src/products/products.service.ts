@@ -7,7 +7,7 @@ import { productRepositoryToken } from './product.constants'
 export class ProductsService {
   constructor(
     @Inject(productRepositoryToken)
-    private readonly productRepository: Repository<Product>,
+    private readonly productRepository: Repository<Product>
   ) {}
 
   async create(product: Product) {
@@ -24,7 +24,7 @@ export class ProductsService {
 
   async update(id: string, product: Product): Promise<Product> {
     const productToUpdate = await this.productRepository.findOne(id)
-    return await this.productRepository.save({...productToUpdate, ...product})
+    return await this.productRepository.save({ ...productToUpdate, ...product })
   }
 
   async remove(id: string) {

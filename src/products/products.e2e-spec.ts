@@ -6,15 +6,15 @@ import { INestApplication } from '@nestjs/common'
 
 describe('Products', () => {
   let app: INestApplication
-  const productsService = { findAll: () => ['test']}
+  const productsService = { findAll: () => ['test'] }
 
   beforeAll(async () => {
     const module = await Test.createTestingModule({
       imports: [ProductsModule]
     })
-    .overrideProvider(ProductsService)
-    .useValue(productsService)
-    .compile()
+      .overrideProvider(ProductsService)
+      .useValue(productsService)
+      .compile()
 
     app = module.createNestApplication()
     await app.init()
@@ -22,13 +22,12 @@ describe('Products', () => {
 
   it('/GET products', () => {
     return request(app.getHttpServer())
-    .get('/products')
-    .expect(200)
-    .expect(productsService.findAll())
+      .get('/products')
+      .expect(200)
+      .expect(productsService.findAll())
   })
 
   afterAll(async () => {
     await app, close()
   })
-
 })

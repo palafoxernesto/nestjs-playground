@@ -5,14 +5,12 @@ import { CreateUserDto } from '../users/dtos/user.dto'
 
 @Controller('auth')
 export class AuthController {
-  constructor(
-    private readonly authService: AuthService
-    ) {}
+  constructor(private readonly authService: AuthService) {}
 
   @Post('signup')
   async signup(@Body() createUserDto: CreateUserDto) {
-    const {email, password, username} = createUserDto
-    return this.authService.SignUp({ email, username, password})
+    const { email, password, username } = createUserDto
+    return this.authService.SignUp({ email, username, password })
   }
 
   @UseGuards(AuthGuard('local'))

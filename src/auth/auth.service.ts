@@ -9,9 +9,9 @@ export class AuthService {
   constructor(
     private readonly usersService: UsersService,
     private readonly jwtService: JwtService
-    ) {}
+  ) {}
 
-  async SignUp({email, password, username}): Promise<any> {
+  async SignUp({ email, password, username }): Promise<any> {
     const salt = randomBytes(32)
     const passwordHashed = await argon2.hash(password, { salt })
 
@@ -25,7 +25,7 @@ export class AuthService {
     return {
       user: {
         email: userRecord.email,
-        username: userRecord.username,
+        username: userRecord.username
       }
     }
   }
@@ -39,19 +39,22 @@ export class AuthService {
         throw new Error('Incorrect password')
       }
       return {
-      user: {
-        email: user.email,
-        username: user.username
-      },
-      token: this.jwtService.sign({username: user.email, sub: user.password})
+        user: {
+          email: user.email,
+          username: user.username
+        },
+        token: this.jwtService.sign({
+          username: user.email,
+          sub: user.password
+        })
+      }
     }
   }
-}
 
   async oldLogin(user: any) {
     const payload = { username: user.username, sub: user.userId }
     return {
-      access_token:  this.jwtService.sign(payload)
+      access_token: this.jwtService.sign(payload)
     }
   }
 }

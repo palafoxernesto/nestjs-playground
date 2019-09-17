@@ -19,7 +19,9 @@ describe('Products Controller', () => {
   describe('findAll', () => {
     it('it should return an array of products', async () => {
       const result: ProductEntity[] = []
-      jest.spyOn(productsService, 'findAll').mockImplementation(() => Promise.resolve(result))
+      jest
+        .spyOn(productsService, 'findAll')
+        .mockImplementation(() => Promise.resolve(result))
 
       expect(await productsController.findAll()).toBe(result)
     })
