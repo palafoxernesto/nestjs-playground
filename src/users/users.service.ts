@@ -8,18 +8,10 @@ export class UsersService {
     @Inject('USERS_REPOSITORY') private readonly userRepository: Repository<User>) {}
 
   async findOne(email: string): Promise<User> {
-    try {
       return await this.userRepository.findOne({email});
-    } catch (err) {
-      return err;
-    }
   }
 
   async create(user: User) {
-    try {
-      return await this.userRepository.save(user);
-    } catch (err) {
-      return err;
-    }
+    return await this.userRepository.save(user);
   }
 }
